@@ -22,6 +22,12 @@ struct nodoBeb
     nodoBeb *sig;
     nodoBeb *ant;
 } *primeroB = NULL, *ultimoB = NULL;
+struct nodoAl
+{
+    bodyBeb alcolicas;
+    nodoBeb *sig;
+    nodoBeb *ant;
+} *primeroAh = NULL, *ultimoAh = NULL;
 // variables globales
 short cantbeb = 0;
 // declarando funciones
