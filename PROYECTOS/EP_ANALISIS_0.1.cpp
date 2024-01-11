@@ -22,6 +22,7 @@ struct nodoBeb
     nodoBeb *sig;
     nodoBeb *ant;
 } *primeroB = NULL, *ultimoB = NULL;
+// nodo alcoholicas
 struct nodoAl
 {
     bodyBeb alcolicas;
