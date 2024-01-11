@@ -6,7 +6,7 @@
 
 using namespace std;
 
-// declarando estructuras y nodos
+// CUERPO DE BEBIDAS
 struct bodyBeb
 {
     string nombre;
