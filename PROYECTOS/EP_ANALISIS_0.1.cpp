@@ -41,6 +41,10 @@ struct nodoDU
 // variables globales
 short cantbeb = 0;
 short cantAL = 0;
+short dulce = 0;
+short salado = 0;
+short alimento = 0;
+short Hogar = 0;
 // declarando funciones
 void menu();
 void menuAg();
