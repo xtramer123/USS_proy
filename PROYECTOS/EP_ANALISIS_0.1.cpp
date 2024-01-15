@@ -31,12 +31,19 @@ struct nodoAl
     nodoAl *ant;
 } *primeroAh = NULL, *ultimoAh = NULL;
 // nodo snack dulce
-struct nodoDU
+struct nodoDUL
 {
     bodyProd snDul;
-    nodoDU *sig;
-    nodoDU *ant;
+    nodoDUL *sig;
+    nodoDUL *ant;
 } *primeroD = NULL, *ultimoD = NULL;
+// nodo snack salado
+struct nodoSAL
+{
+    bodyProd snSAL;
+    nodoSAL *sig;
+    nodoSAL *ant;
+};
 
 // variables globales
 short cantbeb = 0;
