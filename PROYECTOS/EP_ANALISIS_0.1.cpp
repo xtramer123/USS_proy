@@ -36,7 +36,7 @@ struct nodoDU
     bodyProd snDul;
     nodoDU *sig;
     nodoDU *ant;
-} *primeroD = NULL, ultimoD = NULL;
+} *primeroD = NULL, *ultimoD = NULL;
 
 // variables globales
 short cantbeb = 0;
