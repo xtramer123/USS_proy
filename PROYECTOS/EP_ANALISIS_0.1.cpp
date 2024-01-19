@@ -5,8 +5,8 @@
 #include <conio.h>
 
 using namespace std;
-//hola xd
-// CUERPO DE PRODUCTOS EN GENERAL
+// hola xd
+//  CUERPO DE PRODUCTOS EN GENERAL
 struct bodyProd
 {
     string nombre;
@@ -43,7 +43,7 @@ struct nodoSAL
     bodyProd snSAL;
     nodoSAL *sig;
     nodoSAL *ant;
-};
+} *primeroSA = NULL, *ultimoSA = NULL;
 
 // variables globales
 short cantbeb = 0;
@@ -59,7 +59,11 @@ void agBeb();
 void agAL();
 void comprarBEB();
 void comprarAL();
-
+void agSAL();
+void agDUL();
+void menuDEL();
+void comprarSAL();
+// agregando
 void agBeb()
 {
     fflush(stdin);
@@ -104,41 +108,6 @@ void agBeb()
     system("Pause");
     system("cls");
 }
-
-void comprarBEB()
-{
-    nodoBeb *actual = primeroB;
-    short i = 1;
-    while (actual != NULL)
-    {
-        cout << "\nBEBIDA  " << i << endl;
-        cout << "Nombre: " << actual->bebidas.nombre << endl;
-        cout << "Precio: $" << actual->bebidas.precio << endl;
-        cout << "Litros: " << actual->bebidas.litros << "L" << endl;
-        cout << "Stock: " << actual->bebidas.stock << endl;
-        cout << "Codigo de compra: " << actual->bebidas.codigo << endl;
-        i++;
-        actual = actual->sig;
-    }
-}
-
-void comprarAL()
-{
-    nodoAl *alco = primeroAh;
-    short i = 1;
-    while (alco != NULL)
-    {
-        cout << "\nBEBIDA  " << i << endl;
-        cout << "Nombre: " << alco->alcolicas.nombre << endl;
-        cout << "Precio: $" << alco->alcolicas.precio << endl;
-        cout << "Litros: " << alco->alcolicas.litros << "L" << endl;
-        cout << "Stock: " << alco->alcolicas.stock << endl;
-        cout << "Codigo de compra: " << alco->alcolicas.codigo << endl;
-        i++;
-        alco = alco->sig;
-    }
-}
-
 void agAL()
 {
     fflush(stdin);
@@ -184,6 +153,149 @@ void agAL()
     system("cls");
 }
 
+// snack salado
+void agSAL()
+{
+    fflush(stdin);
+    string nombre;
+    // string raiz que tendra la 1° del cod de prod.
+    char code1[15] = "SN_SAL-";
+    // string secun. que sera la cant convertida en texto.
+    string code2 = to_string(salado);
+    nodoSAL *nuevo_sal = new nodoSAL();
+    fflush(stdin);
+    cout << "Ingresa Nombre del snack salado " << salado + 1 << ": ";
+    getline(cin, nuevo_sal->snSAL.nombre);
+    nombre = nuevo_sal->snSAL.nombre;
+    fflush(stdin);
+    cout << "Ingresa precio del snack " << nombre << ": ";
+    cin >> nuevo_sal->snSAL.precio;
+    cout << "Ingresa peso del snack " << nombre << ": ";
+    cin >> nuevo_sal->snSAL.kilos;
+    cout << "Ingresa Stock del snack " << nombre << ": ";
+    cin >> nuevo_sal->snSAL.stock;
+    // ahora code 1 es la raiz + la sec.
+    strcat(code1, code2.c_str());
+    // el codigo final es el code 1 concatenado.
+    nuevo_sal->snSAL.codigo = code1;
+    cout << "CODIGO GENERADO AUTOMATICAMENTE: " << nuevo_sal->snSAL.codigo << endl;
+    // cambiamos la cantidad y el string , 2 pajaros de un tiro
+    if (primeroSA == NULL)
+    {
+        primeroSA = nuevo_sal;
+        primeroSA->ant = NULL;
+        primeroSA->sig = NULL;
+        ultimoSA = primeroSA;
+    }
+    else
+    {
+        ultimoSA->sig = nuevo_sal;
+        nuevo_sal->ant = ultimoSA;
+        nuevo_sal->sig = NULL;
+        ultimoSA = nuevo_sal;
+    }
+    salado++;
+    system("Pause");
+    system("cls");
+}
+// snack dulce
+void agDUL()
+{
+    string nombre;
+    char code1[15] = "SN_DUL-";
+    string code2 = to_string(dulce);
+    nodoDUL *nuevo_dulce = new nodoDUL();
+    fflush(stdin);
+    cout << "Ingresa nombre del snack dulce " << dulce + 1 << " :";
+    getline(cin, nuevo_dulce->snDul.nombre);
+    nombre = nuevo_dulce->snDul.nombre;
+    cout << "Ingresa precio de " << nombre << " :";
+    cin >> nuevo_dulce->snDul.precio;
+    cout << "Ingresa peso de " << nombre << " :";
+    cin >> nuevo_dulce->snDul.kilos;
+    cout << "Ingresa stock de " << nombre << " :";
+    cin >> nuevo_dulce->snDul.stock;
+    strcat(code1, code2.c_str());
+    nuevo_dulce->snDul.codigo = code1;
+    cout << "Codigo generado :" << code1 << endl;
+    if (primeroD == NULL)
+    {
+        primeroD = nuevo_dulce;
+        primeroD->ant = NULL;
+        primeroD->sig = NULL;
+        ultimoD = primeroD;
+    }
+    else
+    {
+        ultimoD->sig = nuevo_dulce;
+        nuevo_dulce->ant = ultimoD;
+        nuevo_dulce->sig = NULL;
+        ultimoD = nuevo_dulce;
+    }
+    dulce++;
+    system("pause");
+    system("cls");
+    fflush(stdin);
+}
+// comprando
+void comprarBEB()
+{
+    nodoBeb *actual = primeroB;
+    short i = 1;
+    while (actual != NULL)
+    {
+        cout << "\nBEBIDA  " << i << endl;
+        cout << "Nombre: " << actual->bebidas.nombre << endl;
+        cout << "Precio: $" << actual->bebidas.precio << endl;
+        cout << "Litros: " << actual->bebidas.litros << "L" << endl;
+        cout << "Stock: " << actual->bebidas.stock << endl;
+        cout << "Codigo de compra: " << actual->bebidas.codigo << endl;
+        i++;
+        actual = actual->sig;
+    }
+}
+
+void comprarAL()
+{
+    nodoAl *alco = primeroAh;
+    short i = 1;
+    while (alco != NULL)
+    {
+        cout << "\nBEBIDA  " << i << endl;
+        cout << "Nombre: " << alco->alcolicas.nombre << endl;
+        cout << "Precio: $" << alco->alcolicas.precio << endl;
+        cout << "Litros: " << alco->alcolicas.litros << "L" << endl;
+        cout << "Stock: " << alco->alcolicas.stock << endl;
+        cout << "Codigo de compra: " << alco->alcolicas.codigo << endl;
+        i++;
+        alco = alco->sig;
+    }
+}
+
+void comprarSAL()
+{
+    nodoSAL *saladito = primeroSA;
+    short i = 1;
+    while (saladito != NULL)
+    {
+        cout << "\nSNACK  " << i << endl;
+        cout << "Nombre: " << saladito->snSAL.nombre << endl;
+        cout << "Precio: $" << saladito->snSAL.precio << endl;
+        cout << "Peso: " << saladito->snSAL.kilos << "Kg." << endl;
+        cout << "Stock: " << saladito->snSAL.stock << endl;
+        cout << "Codigo de compra: " << saladito->snSAL.codigo << endl;
+        i++;
+        saladito = saladito->sig;
+    }
+    if (saladito == NULL)
+    {
+        cout << "No has agregado ningun producto" << endl;
+        system("pause");
+        system("cls");
+    }
+}
+
+// MENUS
 void menuCOM()
 {
     short dec;
@@ -208,8 +320,10 @@ void menuCOM()
             comprarAL();
             break;
         case 3:
+
             break;
         case 4:
+            comprarSAL();
             break;
         case 5:
             break;
@@ -244,6 +358,46 @@ void menuAg()
             break;
         case 2:
             agAL();
+            break;
+        case 3:
+            agDUL();
+            break;
+        case 4:
+            agSAL();
+            break;
+        case 5:
+            break;
+        case 6:
+            break;
+        default:
+            band = false;
+            break;
+        }
+    } while (band == true);
+}
+
+void menuDEL()
+{
+    short dec;
+    bool band = true;
+    do
+    {
+        cout << "\n**** MENU DE ELIMINAR ****" << endl;
+        cout << "1- Bebidas no Alcoholicas " << endl;
+        cout << "2- Bebidas Alcoholicas " << endl;
+        cout << "3- Snack Dulce " << endl;
+        cout << "4- Snack Salado " << endl;
+        cout << "5- Alimentos " << endl;
+        cout << "6- Productos del Hogar " << endl;
+        cout << "7- Salir " << endl;
+        cin >> dec;
+        switch (dec)
+        {
+        case 1:
+
+            break;
+        case 2:
+
             break;
         case 3:
             break;
