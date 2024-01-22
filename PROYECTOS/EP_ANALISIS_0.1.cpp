@@ -253,6 +253,12 @@ void comprarBEB()
         i++;
         actual = actual->sig;
     }
+    if (actual == NULL)
+    {
+        cout << "No has agregado ningun producto" << endl;
+        system("pause");
+        system("cls");
+    }
 }
 
 void comprarAL()
@@ -269,6 +275,12 @@ void comprarAL()
         cout << "Codigo de compra: " << alco->alcolicas.codigo << endl;
         i++;
         alco = alco->sig;
+    }
+    if (alco == NULL)
+    {
+        cout << "No has agregado ningun producto" << endl;
+        system("pause");
+        system("cls");
     }
 }
 
@@ -288,6 +300,29 @@ void comprarSAL()
         saladito = saladito->sig;
     }
     if (saladito == NULL)
+    {
+        cout << "No has agregado ningun producto" << endl;
+        system("pause");
+        system("cls");
+    }
+}
+
+void comprarDUL()
+{
+    nodoDUL *dulcecito = primeroD;
+    short i = 1;
+    while (dulcecito != NULL)
+    {
+        cout << "\nSNACK  " << i << endl;
+        cout << "Nombre: " << dulcecito->snDul.nombre << endl;
+        cout << "Precio: $" << dulcecito->snDul.precio << endl;
+        cout << "Peso: " << dulcecito->snDul.kilos << "Kg." << endl;
+        cout << "Stock: " << dulcecito->snDul.stock << endl;
+        cout << "Codigo de compra: " << dulcecito->snDul.codigo << endl;
+        i++;
+        dulcecito = dulcecito->sig;
+    }
+    if (dulcecito == NULL)
     {
         cout << "No has agregado ningun producto" << endl;
         system("pause");
