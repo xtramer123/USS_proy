@@ -250,7 +250,7 @@ void agDUL()
 // comprando
 void mostBEB()
 {
-    nodoBeb *actual = primeroB;
+    nodoBeb *actual = ultimoB;
     short i = 1;
     if (actual != NULL)
     {
@@ -263,7 +263,7 @@ void mostBEB()
             cout << "Stock: " << actual->bebidas.stock << endl;
             cout << "Codigo de compra: " << actual->bebidas.codigo << endl;
             i++;
-            actual = actual->sig;
+            actual = actual->ant;
         }
     }
     else
@@ -369,6 +369,8 @@ void delet_beb()
             if ((actual->bebidas.codigo == code) && (actual == primeroB))
             { // esto quiere decir q queremos elimianr el primer elemento
                 primeroB = primeroB->sig;
+                if (primeroB == NULL)
+                    ultimoB = NULL;
                 delete actual;
                 break;
             }
@@ -380,10 +382,15 @@ void delet_beb()
             }
             if ((actual->bebidas.codigo == code) && (actual != primeroB))
             {
-                ante->sig = sigue;
                 if (sigue != NULL)
                 {
+                    ante->sig = sigue;
                     sigue->ant = ante;
+                }
+                else
+                {
+                    ante->sig = NULL;
+                    ultimoB = ante;
                 }
                 delete actual;
                 break;
