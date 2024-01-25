@@ -6,7 +6,7 @@
 
 using namespace std;
 // hola xd
-//  CUERPO DE PRODUCTOS EN GENERAL
+//  CUERPO DE PRODUCTOS EN GENERAL c
 struct bodyProd
 {
     string nombre;
