@@ -277,7 +277,7 @@ void mostBEB()
 
 void mostALCO()
 {
-    nodoAl *alco = primeroAh;
+    nodoAl *alco = ultimoAh;
     short i = 1;
     if (alco != NULL)
     {
@@ -290,7 +290,7 @@ void mostALCO()
             cout << "Stock: " << alco->alcolicas.stock << endl;
             cout << "Codigo de compra: " << alco->alcolicas.codigo << endl;
             i++;
-            alco = alco->sig;
+            alco = alco->ant;
         }
     }
     else
@@ -548,7 +548,7 @@ void menuDEL()
             delet_beb();
             break;
         case 2:
-
+            delet_alco();
             break;
         case 3:
             break;
