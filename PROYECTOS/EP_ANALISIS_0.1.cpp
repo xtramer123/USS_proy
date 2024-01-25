@@ -65,6 +65,7 @@ void agSAL();
 void agDUL();
 void menuDEL();
 void delet_beb();
+void delet_alco();
 // agregando
 void agBeb()
 {
@@ -393,6 +394,52 @@ void delet_beb()
                     ultimoB = ante;
                 }
                 delete actual;
+                break;
+            }
+        }
+    }
+}
+
+void delet_alco()
+{
+    nodoAl *borrar = primeroAh;
+    nodoAl *anterior;
+    nodoAl *siguiente;
+    string code;
+    mostALCO();
+    if (borrar != NULL)
+    {
+        cout << "Ingresa el codigo de la bebida a eliminar: ";
+        cin >> code;
+        while (borrar != NULL)
+        {
+            if ((borrar->alcolicas.codigo == code) && (borrar == primeroAh))
+            { // en caso sea el primero
+                primeroAh = primeroAh->sig;
+                if (primeroAh == NULL) // en caso el primero sea el ultimo
+                    ultimoAh = primeroAh;
+                delete borrar;
+                break;
+            }
+            else
+            {
+                borrar = borrar->sig;
+                anterior = borrar->ant;
+                siguiente = borrar->sig;
+            }
+            if ((borrar->alcolicas.codigo == code) && (borrar != primeroAh))
+            {
+                if (siguiente == NULL)
+                {
+                    anterior->sig = NULL;
+                    ultimoAh = anterior;
+                }
+                else
+                {
+                    anterior->sig = siguiente;
+                    siguiente->ant = anterior;
+                }
+                delete borrar;
                 break;
             }
         }
