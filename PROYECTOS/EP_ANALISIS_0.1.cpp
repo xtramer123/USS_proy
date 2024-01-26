@@ -66,6 +66,7 @@ void agDUL();
 void menuDEL();
 void delet_beb();
 void delet_alco();
+void delet_sal();
 // agregando
 void agBeb()
 {
@@ -444,6 +445,13 @@ void delet_alco()
             }
         }
     }
+}
+
+void delet_sal()
+{
+    nodoSAL *actual = primeroSA;
+    nodoSAL *anterior;
+    nodoSAL *siguiente;
 }
 
 // MENUS
