@@ -449,9 +449,48 @@ void delet_alco()
 
 void delet_sal()
 {
+    string code;
     nodoSAL *actual = primeroSA;
     nodoSAL *anterior;
     nodoSAL *siguiente;
+    mostSAL();
+    if (actual != NULL)
+    {
+        cout << "Ingresa el codigo del snack a eliminar: ";
+        cin >> code;
+        while (actual != NULL)
+        {
+            if ((actual->snSAL.codigo == code) && (actual == primeroSA))
+            {
+                primeroSA = primeroSA->sig;
+                if (primeroSA == NULL)
+                    ultimoSA = primeroSA;
+                delete actual;
+                break;
+            }
+            else
+            {
+                actual = actual->sig;
+                siguiente = actual->sig;
+                anterior = actual->ant;
+            }
+            if ((actual->snSAL.codigo == code) && (actual != primeroSA))
+            {
+                if (siguiente == NULL)
+                {
+                    anterior->sig = NULL;
+                    ultimoSA = anterior;
+                }
+                else
+                {
+                    anterior->sig = siguiente;
+                    siguiente->ant = anterior;
+                }
+                delete actual;
+                break;
+            }
+        }
+    }
 }
 
 // MENUS
@@ -544,8 +583,8 @@ void menuDEL()
         cout << "\n**** MENU DE ELIMINAR ****" << endl;
         cout << "1- Bebidas no Alcoholicas " << endl;
         cout << "2- Bebidas Alcoholicas " << endl;
-        cout << "3- Snack Dulce " << endl;
-        cout << "4- Snack Salado " << endl;
+        cout << "3- Snack Salado " << endl;
+        cout << "4- Snack Dulce " << endl;
         cout << "5- Alimentos " << endl;
         cout << "6- Productos del Hogar " << endl;
         cout << "7- Salir " << endl;
@@ -559,6 +598,7 @@ void menuDEL()
             delet_alco();
             break;
         case 3:
+            delet_sal();
             break;
         case 4:
             break;
