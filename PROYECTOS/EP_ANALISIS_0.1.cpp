@@ -460,34 +460,48 @@ void delet_sal()
         cin >> code;
         while (actual != NULL)
         {
-            if ((actual->snSAL.codigo == code) && (actual == primeroSA))
+            if (actual != NULL)
             {
-                primeroSA = primeroSA->sig;
-                if (primeroSA == NULL)
-                    ultimoSA = primeroSA;
-                delete actual;
-                break;
-            }
-            else
-            {
-                actual = actual->sig;
-                siguiente = actual->sig;
-                anterior = actual->ant;
-            }
-            if ((actual->snSAL.codigo == code) && (actual != primeroSA))
-            {
-                if (siguiente == NULL)
+                if (actual->snSAL.codigo == code)
                 {
-                    anterior->sig = NULL;
-                    ultimoSA = anterior;
+                    if (actual == primeroSA)
+                    {
+                        primeroSA = primeroSA->sig;
+                        if (primeroSA == NULL)
+                        { // cuando queda un elemento
+                            ultimoSA = primeroSA;
+                        }
+                        else
+                        {
+                            primeroSA->ant = NULL;
+                        }
+                        delete actual;
+                        break;
+                    }
+                    else
+                    {
+                        if (actual == ultimoSA)
+                        { // cuando haya 2 o mas
+                            ultimoSA = ultimoSA->ant;
+                            ultimoSA->sig = NULL;
+                        }
+                        else // cuando el elemento no sea ni el inicio ni el final
+                        {
+                            anterior = actual->ant;
+                            siguiente = actual->sig;
+                            // ahora conectamos
+                            anterior->sig = siguiente;
+                            siguiente->ant = anterior;
+                        }
+                        delete actual;
+                        break;
+                    }
                 }
-                else
-                {
-                    anterior->sig = siguiente;
-                    siguiente->ant = anterior;
-                }
-                delete actual;
-                break;
+            }
+            actual = actual->sig;
+            if (actual == NULL)
+            {
+                cout << "No existe tal producto";
             }
         }
     }
