@@ -414,38 +414,46 @@ void delet_alco()
         cin >> code;
         while (borrar != NULL)
         {
-            if ((borrar->alcolicas.codigo == code) && (borrar == primeroAh))
-            { // en caso sea el primero
-                primeroAh = primeroAh->sig;
-                if (primeroAh == NULL) // en caso el primero sea el ultimo
-                    ultimoAh = primeroAh;
-                delete borrar;
-                break;
-            }
-            else
+            if (borrar->alcolicas.codigo == code)
             {
-                borrar = borrar->sig;
-                anterior = borrar->ant;
-                siguiente = borrar->sig;
-            }
-            if ((borrar->alcolicas.codigo == code) && (borrar != primeroAh))
-            {
-                if (siguiente == NULL)
-                {
-                    anterior->sig = NULL;
-                    ultimoAh = anterior;
+                if (borrar == primeroAh)
+                { // borramos el primero
+                    primeroAh = primeroAh->sig;
+                    if (primeroAh == NULL)
+                    { // cuando solo queda uno
+                        ultimoAh = primeroAh;
+                    }
+                    else
+                    { // cuando hay mas d 1
+                        primeroAh->ant = NULL;
+                    }
+                    delete borrar;
+                    break; // rompo pq ya lo encontre
                 }
                 else
                 {
-                    anterior->sig = siguiente;
-                    siguiente->ant = anterior;
+                    if (borrar == ultimoAh)
+                    {
+                        ultimoAh = ultimoAh->ant;
+                        ultimoAh->sig = NULL;
+                    }
+                    else
+                    {
+                        anterior = borrar->ant;
+                        siguiente = borrar->sig;
+                        // conectamos
+                        anterior->sig = siguiente;
+                        siguiente->ant = anterior;
+                    }
+                    delete borrar;
+                    break;
                 }
-                delete borrar;
-                break;
             }
+            borrar = borrar->sig;
             if (borrar == NULL)
             {
-                cout << "codigo no encontrado";
+                cout << "No encontrado";
+                break;
             }
         }
     }
