@@ -443,6 +443,10 @@ void delet_alco()
                 delete borrar;
                 break;
             }
+            if (borrar == NULL)
+            {
+                cout << "codigo no encontrado";
+            }
         }
     }
 }
@@ -502,6 +506,7 @@ void delet_sal()
             if (actual == NULL)
             {
                 cout << "No existe tal producto";
+                break;
             }
         }
     }
