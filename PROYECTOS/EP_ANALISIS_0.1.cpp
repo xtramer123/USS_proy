@@ -538,6 +538,57 @@ void delet_dulce()
     nodoDUL *actual = primeroD;
     nodoDUL *anterior;
     nodoDUL *siguiente;
+    string code = " ";
+    mostDUL();
+    if (actual != NULL)
+    {
+        cout << "Ingresa codigo de snack a eliminar: ";
+        cin >> code;
+        while (actual != NULL)
+        {
+            if (actual->snDul.codigo == code)
+            {
+                if (actual == primeroD)
+                {
+                    primeroD = primeroD->sig;
+                    if (primeroD == NULL)
+                    {
+                        ultimoD = primeroD;
+                    }
+                    else
+                    {
+                        primeroD->ant = NULL;
+                    }
+                    delete actual;
+                    break;
+                }
+                else
+                {
+                    if (actual == ultimoD)
+                    {
+                        ultimoD = ultimoD->ant;
+                        ultimoD->sig = NULL;
+                    }
+                    else
+                    {
+                        anterior = actual->ant;
+                        siguiente = actual->sig;
+                        // conectamos
+                        anterior->sig = siguiente;
+                        siguiente->ant = anterior;
+                    }
+                    delete actual;
+                    break;
+                }
+            }
+            actual = actual->sig;
+            if (actual == NULL)
+            {
+                cout << "No encontrado";
+                break;
+            }
+        }
+    }
 }
 
 // MENUS
@@ -648,6 +699,7 @@ void menuDEL()
             delet_sal();
             break;
         case 4:
+            delet_dulce();
             break;
         case 5:
             break;
