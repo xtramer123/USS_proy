@@ -67,6 +67,7 @@ void menuDEL();
 void delet_beb();
 void delet_alco();
 void delet_sal();
+void delet_dulce();
 // agregando
 void agBeb()
 {
@@ -368,33 +369,45 @@ void delet_beb()
         cin >> code;
         while (actual != NULL)
         {
-            if ((actual->bebidas.codigo == code) && (actual == primeroB))
-            { // esto quiere decir q queremos elimianr el primer elemento
-                primeroB = primeroB->sig;
-                if (primeroB == NULL)
-                    ultimoB = NULL;
-                delete actual;
-                break;
-            }
-            else
+            if (actual->bebidas.codigo == code)
             {
-                actual = actual->sig;
-                ante = actual->ant;
-                sigue = actual->sig;
-            }
-            if ((actual->bebidas.codigo == code) && (actual != primeroB))
-            {
-                if (sigue != NULL)
+                if (actual == primeroB)
                 {
-                    ante->sig = sigue;
-                    sigue->ant = ante;
+                    primeroB = primeroB->sig;
+                    if (primeroB == NULL)
+                    {
+                        ultimoB = primeroB;
+                    }
+                    else
+                    {
+                        primeroB->ant = NULL;
+                    }
+                    delete actual;
+                    break;
                 }
                 else
                 {
-                    ante->sig = NULL;
-                    ultimoB = ante;
+                    if (actual == ultimoB)
+                    {
+                        ultimoB = ultimoB->ant;
+                        ultimoB->sig = NULL;
+                    }
+                    else
+                    {
+                        ante = actual->ant;
+                        sigue = actual->sig;
+                        // conectamos
+                        ante->sig = sigue;
+                        sigue->ant = ante;
+                    }
+                    delete actual;
+                    break;
                 }
-                delete actual;
+            }
+            actual = actual->sig;
+            if (actual == NULL)
+            {
+                cout << "No encontrado ";
                 break;
             }
         }
@@ -518,6 +531,13 @@ void delet_sal()
             }
         }
     }
+}
+
+void delet_dulce()
+{
+    nodoDUL *actual = primeroD;
+    nodoDUL *anterior;
+    nodoDUL *siguiente;
 }
 
 // MENUS
