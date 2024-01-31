@@ -1,14 +1,44 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Mi primera pagina Web</title>
 </head>
 
 <body>
-    <h1>Hola mundo en html</h1>
+    <!--Haciendo mi primera pagina html-->
+    <h1><span style="color: rgba(122, 0, 31, 0.745);">Sobre mi y mi github</span></h1>
+    <hr> <!--Una linea como de separacion o algo-->
+    <p><span style="color: rgba(4, 16, 238, 0.997);">Hola Soy Jorge Isaac y soy estudiante de ingenieria <br>
+            de sistemas, y estoy practicando un poco de html para github</span></p>
+    <!-- br es un salto de linea -->
+    <!-- span y style es para identificar una linea
+    o parrafo y editarlo -->
+    <a target="_blank" href="https://github.com/xtramer123"><span style="color: rgb(92, 1, 1);">Ir a mi
+            Github</span><br></a>
+    <!--href es para poner el link, la etqueta a, ya la tiene predeterminado-->
+    <!--Target : blanck es para que se abra en otra ventana-->
+    <a target="_blank" href="https://www.facebook.com/jorgeisaac.velizcastaneda?locale=es_LA"><span
+            style="color: blue;">Inresa a mi
+            facebook</span><br></a>
+    <a target="_blank" href="https://www.instagram.com/jorge_isaacv/"><span style="color: rgb(124, 13, 175);">Mi
+            instagram
+        </span> <img src="img/insta-logo.png" alt="12" width="25"> </a>
+    <hr>
+    <!--img es para poner imagenes-->
+    <form action="/PROYECTOS/" method="post">
+        <!--Hacemos referencia al campo, en este caso nombre-->
+        <label for="nombre"><span style="color: aqua;">Ingresa tu nombre:</span> </label>
+        <input value="Jhon doe" id="nombre" name="namespace" placeholder="Ingresa" />
+        <!--Un texto medio fantasma placeholder-->
+        <br><label for="contrasena"><span style="color: rgb(0, 186, 68);">Ingresa tu contraseña:</span> </label>
+        <input value="Password" name="passwor" type="password" id="contrasena" placeholder="Se ocultara "><br>
+        <br>
+        <!--Text area es un cuadrito xD-->
+        <textarea name="Cuadrito" id="comentario" cols="35" rows="5">Texto</textarea>
+        <br>
+        <button type="button">Boton</button>
+    </form>
 </body>
 
 </html>
