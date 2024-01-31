@@ -8,5 +8,5 @@ if edad >= 18:
 else:
     print("Eres menor de edad")
 
-for i in range (10):
+for i in range (edad):
     print(i)
