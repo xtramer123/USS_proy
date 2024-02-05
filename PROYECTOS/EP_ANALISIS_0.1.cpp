@@ -45,6 +45,20 @@ struct nodoSAL
     nodoSAL *ant;
 } *primeroSA = NULL, *ultimoSA = NULL;
 
+struct nodoAlimentos
+{
+    bodyProd pr_al;
+    nodoAlimentos *sig;
+    nodoAlimentos *ant;
+} *primeroAi = NULL, *ultimoAi = NULL;
+
+struct nodoHogar
+{
+    bodyProd pr_hogar;
+    nodoHogar *sig;
+    nodoHogar *ant;
+} *primeroHo = NULL, *ultimoHo = NULL;
+
 // variables globales
 short cantbeb = 0;
 short cantAL = 0;
@@ -63,6 +77,8 @@ void mostSAL();
 void mostDUL();
 void agSAL();
 void agDUL();
+void ag_alimentos();
+void ag_prodHogar();
 void menuDEL();
 void delet_beb();
 void delet_alco();
@@ -250,6 +266,87 @@ void agDUL()
     system("cls");
     fflush(stdin);
 }
+
+void ag_alimentos()
+{
+    if (primeroAi == NULL)
+        alimento = 0;
+    string nombre;
+    char code1[20] = "PR_ALIM-";
+    string code2 = to_string(alimento);
+    nodoAlimentos *nuevo = new nodoAlimentos;
+    fflush(stdin);
+    cout << "Ingresa nombre de producto alimenticio: ";
+    getline(cin, nuevo->pr_al.nombre);
+    nombre = nuevo->pr_al.nombre;
+    cout << "Ingresa precio de " << nombre << ": ";
+    cin >> nuevo->pr_al.precio;
+    cout << "Ingresa Stock de " << nombre << ": ";
+    cin >> nuevo->pr_al.stock;
+    cout << "Ingresa peso de " << nombre << ": ";
+    cin >> nuevo->pr_al.kilos;
+    strcat(code1, code2.c_str());
+    nuevo->pr_al.codigo = code1;
+    cout << "Codigo generado: " << code1 << endl;
+    if (primeroAi == NULL)
+    {
+        nuevo->sig = NULL;
+        nuevo->ant = NULL;
+        primeroAi = nuevo;
+        ultimoAi = nuevo;
+    }
+    else
+    {
+        ultimoAi->sig = nuevo;
+        nuevo->sig = NULL;
+        nuevo->ant = ultimoAi;
+        ultimoAi = nuevo;
+    }
+    alimento++;
+    system("pause");
+    system("cls");
+    fflush(stdin);
+}
+
+void ag_prodHogar()
+{
+    if (primeroHo == NULL)
+        Hogar = 0;
+    string nombre;
+    char code1[20] = "PR_HOG-";
+    string code2 = to_string(Hogar);
+    nodoHogar *nuevo = new nodoHogar;
+    fflush(stdin);
+    cout << "Ingresa nombre del producto del hogar: ";
+    getline(cin, nuevo->pr_hogar.nombre);
+    nombre = nuevo->pr_hogar.nombre;
+    cout << "Ingresa precio de " << nombre << ": ";
+    cin >> nuevo->pr_hogar.precio;
+    cout << "Ingresa stock de " << nombre << ": ";
+    cin >> nuevo->pr_hogar.stock;
+    strcat(code1, code2.c_str());
+    nuevo->pr_hogar.codigo = code1;
+    cout << "Codigo del producto: " << code1 << endl;
+    if (primeroHo == NULL)
+    {
+        nuevo->sig = NULL;
+        nuevo->ant = NULL;
+        primeroHo = nuevo;
+        ultimoHo = primeroHo;
+    }
+    else
+    {
+        ultimoHo->sig = nuevo;
+        nuevo->sig = NULL;
+        nuevo->ant = ultimoHo;
+        ultimoHo = nuevo;
+    }
+    Hogar++;
+    system("pause");
+    system("cls");
+    fflush(stdin);
+}
+
 // comprando
 void mostBEB()
 {
@@ -345,6 +442,56 @@ void mostDUL()
             cout << "Codigo de compra: " << dulcecito->snDul.codigo << endl;
             i++;
             dulcecito = dulcecito->sig;
+        }
+    }
+    else
+    {
+        cout << "No has agregado ningun producto" << endl;
+        system("pause");
+        system("cls");
+    }
+}
+
+void most_alim()
+{
+    nodoAlimentos *actual = primeroAi;
+    short i = 1;
+    if (actual != NULL)
+    {
+        while (actual != NULL)
+        {
+            cout << "\nALIMENTO  " << i << endl;
+            cout << "Nombre: " << actual->pr_al.nombre << endl;
+            cout << "Precio: $" << actual->pr_al.precio << endl;
+            cout << "Peso: " << actual->pr_al.kilos << "Kg." << endl;
+            cout << "Stock: " << actual->pr_al.stock << endl;
+            cout << "Codigo de compra: " << actual->pr_al.codigo << endl;
+            i++;
+            actual = actual->sig;
+        }
+    }
+    else
+    {
+        cout << "No has agregado ningun producto" << endl;
+        system("pause");
+        system("cls");
+    }
+}
+void most_hog()
+{
+    short i = 1;
+    nodoHogar *actual = primeroHo;
+    if (actual != NULL)
+    {
+        while (actual != NULL)
+        {
+            cout << "\nPROD. HOGAR  " << i << endl;
+            cout << "Nombre: " << actual->pr_hogar.nombre << endl;
+            cout << "Precio: $" << actual->pr_hogar.precio << endl;
+            cout << "Stock: " << actual->pr_hogar.stock << endl;
+            cout << "Codigo de compra: " << actual->pr_hogar.codigo << endl;
+            i++;
+            actual = actual->sig;
         }
     }
     else
@@ -622,8 +769,10 @@ void menuCOM()
             mostSAL();
             break;
         case 5:
+            most_alim();
             break;
         case 6:
+            most_hog();
             break;
         default:
             band = false;
@@ -662,8 +811,10 @@ void menuAg()
             agSAL();
             break;
         case 5:
+            ag_alimentos();
             break;
         case 6:
+            ag_prodHogar();
             break;
         default:
             band = false;
