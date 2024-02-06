@@ -135,7 +135,6 @@ void menuDEL()
 
 void menu()
 {
-    //
     short r;
     short dec;
     bool band = true;
@@ -160,7 +159,7 @@ void menu()
                 menuAg();
             break;
         case 2:
-            menuCOM();
+            elegirCl();
             break;
         case 3:
 
