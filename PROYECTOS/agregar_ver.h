@@ -68,6 +68,7 @@ short alimento = 0;
 short Hogar = 0;
 // declarando funciones
 void menu();
+void menuCOM();
 void menuAg();
 void agBeb();
 void agAL();
@@ -84,6 +85,7 @@ void delet_beb();
 void delet_alco();
 void delet_sal();
 void delet_dulce();
+void delet_Ali();
 // agregando
 void agBeb()
 {
