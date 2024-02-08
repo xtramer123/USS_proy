@@ -9,8 +9,33 @@ void deletClients();
 void mostClients();
 void editClient();
 void elegirCl();
+
+#define MAX 10;
+
+struct boletaN
+{
+    string acoli;
+    string noAlc;
+    string sal;
+    string dul;
+    string hog;
+    string ali;
+};
+
+struct boletaP
+{
+    float acoli;
+    float noAlc;
+    float sal;
+    float dul;
+    float hog;
+    float ali;
+};
+
 struct datos
 {
+    boletaN boletaNom;
+    boletaP boletaPre;
     string nombre;
     string apellido;
     short edad;
