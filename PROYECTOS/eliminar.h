@@ -300,3 +300,61 @@ void delet_Ali()
         }
     }
 }
+
+void delet_Hog()
+{
+    string code;
+    nodoHogar *borrar = primeroHo;
+    nodoHogar *anter;
+    nodoHogar *despu;
+    most_hog();
+    if (borrar != NULL)
+    {
+        cout << "Ingresa codigo: ";
+        cin >> code;
+        while (borrar != NULL)
+        {
+            if (borrar->pr_hogar.codigo == code)
+            {
+                if (borrar == primeroHo)
+                {
+                    primeroHo = primeroHo->sig;
+                    if (primeroHo == NULL)
+                    {
+                        ultimoHo = primeroHo;
+                    }
+                    else
+                    {
+                        primeroHo->ant = NULL;
+                    }
+                    delete borrar;
+                    break;
+                }
+                else
+                {
+                    if (borrar == ultimoHo)
+                    {
+                        ultimoHo = ultimoHo->ant;
+                        ultimoHo->sig = NULL;
+                    }
+                    else
+                    {
+                        anter = borrar->ant;
+                        despu = borrar->sig;
+                        // conectar
+                        anter->sig = despu;
+                        despu->ant = anter;
+                    }
+                    delete borrar;
+                    break;
+                }
+            }
+            borrar = borrar->sig;
+            if (borrar == NULL)
+            {
+                cout << "No encontrado";
+                break;
+            }
+        }
+    }
+}

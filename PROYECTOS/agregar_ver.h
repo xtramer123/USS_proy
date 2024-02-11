@@ -86,6 +86,7 @@ void delet_alco();
 void delet_sal();
 void delet_dulce();
 void delet_Ali();
+void delet_Hog();
 // agregando
 void agBeb()
 {

@@ -125,6 +125,7 @@ void menuDEL()
             delet_Ali();
             break;
         case 6:
+            delet_Hog();
             break;
         default:
             band = false;
