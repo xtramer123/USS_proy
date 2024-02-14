@@ -166,36 +166,3 @@ void deletClients()
         }
     }
 }
-
-void elegirCl()
-{
-    short i = 1;
-    nodoClient *actual = primerC;
-    string dni;
-    mostClients();
-    if (actual != NULL)
-    {
-        cout << "Ingresar DNI: ";
-        cin >> dni;
-        while (actual != NULL)
-        {
-            if (actual->person.dni == dni)
-            {
-                cout << "\nCliente [" << i << "] SELECCIONADO " << endl;
-                cout << "Nombre: " << actual->person.nombre << endl;
-                cout << "Apellido: " << actual->person.apellido << endl;
-                cout << "DNI: " << actual->person.dni << endl;
-                cout << "Edad: " << actual->person.edad << endl;
-                cout << "Deuda: $" << actual->person.deuda << endl;
-                actual = actual->sig;
-            }
-            i++;
-            actual = actual->sig;
-            if (actual == NULL)
-            {
-                cout << "No encontrado " << endl;
-                break;
-            }
-        }
-    }
-}

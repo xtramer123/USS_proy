@@ -3,8 +3,7 @@
 #include <string.h>
 #include <stdlib.h>
 #include <conio.h>
-#include "eliminar.h"
-#include "clientes.h"
+#include "comprar.h"
 
 using namespace std;
 
@@ -14,6 +13,7 @@ void menuCOM()
     bool band = true;
     do
     {
+        cout << "CLIENTE: " << seleccionado->person.nombre;
         cout << "\n**** MENU DE COMPRA ****" << endl;
         cout << "1- Bebidas no Alcoholicas " << endl;
         cout << "2- Bebidas Alcoholicas " << endl;
@@ -26,7 +26,7 @@ void menuCOM()
         switch (dec)
         {
         case 1:
-            mostBEB();
+            comBeb();
             break;
         case 2:
             mostALCO();
