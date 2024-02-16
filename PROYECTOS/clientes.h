@@ -81,6 +81,7 @@ void agregarClients()
         ultimoC = nuevo;
     }
 
+    // escribir clientes en txt
     fstream clientes;
     clientes.open("D://USS//USS_proy//PROYECTOS//TEXTO//clientes.txt", ios::app | ios::out);
     if (clientes.fail())
@@ -99,7 +100,7 @@ void agregarClients()
         i++;
         clientes.close();
     }
-
+    // fin escritura
     system("pause");
     system("cls");
     fflush(stdin);
