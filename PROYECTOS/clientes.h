@@ -3,6 +3,7 @@
 #include <string.h>
 #include <stdlib.h>
 #include <conio.h>
+#include <fstream>
 using namespace std;
 void agregarClients();
 void deletClients();
