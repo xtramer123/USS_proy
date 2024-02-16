@@ -231,7 +231,7 @@ void menu()
     } while (band);
 }
 
-main()
+int main()
 {
     menu();
 }
