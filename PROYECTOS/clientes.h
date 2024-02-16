@@ -50,6 +50,7 @@ struct nodoClient
     nodoClient *ant;
 } *primerC = NULL, *ultimoC = NULL;
 
+short i = 1;
 void agregarClients()
 {
     nodoClient *nuevo = new nodoClient;
@@ -79,6 +80,26 @@ void agregarClients()
         nuevo->sig = NULL;
         ultimoC = nuevo;
     }
+
+    fstream clientes;
+    clientes.open("D://USS//USS_proy//PROYECTOS//TEXTO//clientes.txt", ios::app | ios::out);
+    if (clientes.fail())
+    {
+        cout << "Error: Archivo no existe";
+        exit(1);
+    }
+    else
+    {
+        clientes << "Cliente " << i << endl;
+        clientes << "Nombre: " << nuevo->person.nombre << endl;
+        clientes << "Apellido: " << nuevo->person.apellido << endl;
+        clientes << "DNI: " << nuevo->person.dni << endl;
+        clientes << "Edad: " << nuevo->person.edad << endl;
+        clientes << "---------------------" << endl;
+        i++;
+        clientes.close();
+    }
+
     system("pause");
     system("cls");
     fflush(stdin);
