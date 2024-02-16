@@ -69,6 +69,7 @@ short Hogar = 0;
 // declarando funciones
 void menu();
 void menuCOM();
+void MenuEdit();
 void menuAg();
 void agBeb();
 void agAL();

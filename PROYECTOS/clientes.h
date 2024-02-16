@@ -166,3 +166,43 @@ void deletClients()
         }
     }
 }
+
+void editClient()
+{
+    nodoClient *actual = primerC;
+    string dni;
+    mostClients();
+    if (actual != NULL)
+    {
+        cout << "Ingresa dni: ";
+        cin >> dni;
+        while (actual != NULL)
+        {
+            if (actual->person.dni == dni)
+            {
+                fflush(stdin);
+                cout << "Nombre: ";
+                fflush(stdin);
+                getline(cin, actual->person.nombre);
+                cout << "Apellido: ";
+                fflush(stdin);
+                getline(cin, actual->person.apellido);
+                fflush(stdin);
+                cout << "Dni: ";
+                cin >> actual->person.dni;
+                cout << "Edad: ";
+                cin >> actual->person.edad;
+                break;
+            }
+            else
+            {
+                actual = actual->sig;
+            }
+            if (actual == NULL)
+            {
+                cout << "No encontrado ";
+                break;
+            }
+        }
+    }
+}

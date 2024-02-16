@@ -6,7 +6,49 @@
 #include "comprar.h"
 
 using namespace std;
-
+// edicion
+void MenuEdit()
+{
+    short dec;
+    bool band = true;
+    do
+    {
+        cout << "\n**** MENU DE EDICION DE PRODUCTOS ****" << endl;
+        cout << "1- Bebidas no Alcoholicas " << endl;
+        cout << "2- Bebidas Alcoholicas " << endl;
+        cout << "3- Snack Dulce " << endl;
+        cout << "4- Snack Salado " << endl;
+        cout << "5- Alimentos " << endl;
+        cout << "6- Productos del Hogar " << endl;
+        cout << "7- Salir " << endl;
+        cin >> dec;
+        switch (dec)
+        {
+        case 1:
+            editBeb();
+            break;
+        case 2:
+            editAlco();
+            break;
+        case 3:
+            editDul();
+            break;
+        case 4:
+            editSal();
+            break;
+        case 5:
+            editHog();
+            break;
+        case 6:
+            editAli();
+            break;
+        default:
+            band = false;
+            break;
+        }
+    } while (band == true);
+}
+// compra
 void menuCOM()
 {
     short dec;
@@ -49,7 +91,7 @@ void menuCOM()
         }
     } while (band == true);
 }
-
+// agregado
 void menuAg()
 {
     short dec;
@@ -91,7 +133,7 @@ void menuAg()
         }
     } while (band == true);
 }
-
+// eliminacion
 void menuDEL()
 {
     short dec;
@@ -163,7 +205,13 @@ void menu()
             elegirCl();
             break;
         case 3:
-
+            cout << "Cliente [1]: " << endl;
+            cout << "Productos [2]: " << endl;
+            cin >> r;
+            if (r == 1)
+                editClient();
+            if (r == 2)
+                MenuEdit();
             break;
         case 4:
             cout << "Cliente [1]: " << endl;

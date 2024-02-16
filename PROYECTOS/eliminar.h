@@ -6,6 +6,12 @@
 #include "agregar_ver.h"
 
 using namespace std;
+void editBeb();
+void editAlco();
+void editDul();
+void editSal();
+void editHog();
+void editAli();
 
 // eliminar
 void delet_beb()
@@ -353,6 +359,234 @@ void delet_Hog()
             if (borrar == NULL)
             {
                 cout << "No encontrado";
+                break;
+            }
+        }
+    }
+}
+
+// editar : D
+
+void editBeb()
+{
+    nodoBeb *actual = primeroB;
+    string code;
+    mostBEB();
+    if (actual != NULL)
+    {
+        cout << "Ingresa codigo: ";
+        cin >> code;
+        while (actual != NULL)
+        {
+            if (actual->bebidas.codigo == code)
+            {
+                fflush(stdin);
+                cout << "Nota: el codigo no es editable" << endl;
+                cout << "nombre: ";
+                getline(cin, actual->bebidas.nombre);
+                cout << "Precio: ";
+                cin >> actual->bebidas.precio;
+                cout << "Stock: ";
+                cin >> actual->bebidas.stock;
+                cout << "Litros o Ml: ";
+                cin >> actual->bebidas.litros;
+                break;
+            }
+            else
+            {
+                actual = actual->sig;
+            }
+            if (actual == NULL)
+            {
+                cout << "No encontrado ";
+                break;
+            }
+        }
+    }
+}
+
+void editAlco()
+{
+    nodoAl *actual = primeroAh;
+    string code;
+    mostALCO();
+    if (actual != NULL)
+    {
+        cout << "Ingresa codigo: ";
+        cin >> code;
+        while (actual != NULL)
+        {
+            if (actual->alcolicas.codigo == code)
+            {
+                fflush(stdin);
+                cout << "Nota: el codigo no es editable" << endl;
+                cout << "nombre: ";
+                getline(cin, actual->alcolicas.nombre);
+                cout << "Precio: ";
+                cin >> actual->alcolicas.precio;
+                cout << "Stock: ";
+                cin >> actual->alcolicas.stock;
+                cout << "Litros o Ml: ";
+                cin >> actual->alcolicas.litros;
+                break;
+            }
+            else
+            {
+                actual = actual->sig;
+            }
+            if (actual == NULL)
+            {
+                cout << "No encontrado ";
+                break;
+            }
+        }
+    }
+}
+
+void editDul()
+{
+    nodoDUL *actual = primeroD;
+    string code;
+    mostDUL();
+    if (actual != NULL)
+    {
+        cout << "Ingresa codigo: ";
+        cin >> code;
+        while (actual != NULL)
+        {
+            if (actual->snDul.codigo == code)
+            {
+                fflush(stdin);
+                cout << "Nota: el codigo no es editable" << endl;
+                cout << "nombre: ";
+                getline(cin, actual->snDul.nombre);
+                cout << "Precio: ";
+                cin >> actual->snDul.precio;
+                cout << "Stock: ";
+                cin >> actual->snDul.stock;
+                cout << "Peso (Kg o g): ";
+                cin >> actual->snDul.kilos;
+                break;
+            }
+            else
+            {
+                actual = actual->sig;
+            }
+            if (actual == NULL)
+            {
+                cout << "No encontrado ";
+                break;
+            }
+        }
+    }
+}
+
+void editSal()
+{
+    nodoSAL *actual = primeroSA;
+    string code;
+    mostSAL();
+    if (actual != NULL)
+    {
+        cout << "Ingresa codigo: ";
+        cin >> code;
+        while (actual != NULL)
+        {
+            if (actual->snSAL.codigo == code)
+            {
+                fflush(stdin);
+                cout << "Nota: el codigo no es editable" << endl;
+                cout << "nombre: ";
+                getline(cin, actual->snSAL.nombre);
+                cout << "Precio: ";
+                cin >> actual->snSAL.precio;
+                cout << "Stock: ";
+                cin >> actual->snSAL.stock;
+                cout << "Peso (Kg o g): ";
+                cin >> actual->snSAL.kilos;
+                break;
+            }
+            else
+            {
+                actual = actual->sig;
+            }
+            if (actual == NULL)
+            {
+                cout << "No encontrado ";
+                break;
+            }
+        }
+    }
+}
+
+void editHog()
+{
+    nodoHogar *actual = primeroHo;
+    string code;
+    most_hog();
+    if (actual != NULL)
+    {
+        cout << "Ingresa codigo: ";
+        cin >> code;
+        while (actual != NULL)
+        {
+            if (actual->pr_hogar.codigo == code)
+            {
+                fflush(stdin);
+                cout << "Nota: el codigo no es editable" << endl;
+                cout << "nombre: ";
+                getline(cin, actual->pr_hogar.nombre);
+                cout << "Precio: ";
+                cin >> actual->pr_hogar.precio;
+                cout << "Stock: ";
+                cin >> actual->pr_hogar.stock;
+                break;
+            }
+            else
+            {
+                actual = actual->sig;
+            }
+            if (actual == NULL)
+            {
+                cout << "No encontrado ";
+                break;
+            }
+        }
+    }
+}
+
+void editAli()
+{
+    nodoAlimentos *actual = primeroAi;
+    string code;
+    most_alim();
+    if (actual != NULL)
+    {
+        cout << "Ingresa codigo: ";
+        cin >> code;
+        while (actual != NULL)
+        {
+            if (actual->pr_al.codigo == code)
+            {
+                fflush(stdin);
+                cout << "Nota: el codigo no es editable" << endl;
+                cout << "nombre: ";
+                getline(cin, actual->pr_al.nombre);
+                cout << "Precio: ";
+                cin >> actual->pr_al.precio;
+                cout << "Peso (Kg / g): ";
+                cin >> actual->pr_al.kilos;
+                cout << "Stock: ";
+                cin >> actual->pr_al.stock;
+                break;
+            }
+            else
+            {
+                actual = actual->sig;
+            }
+            if (actual == NULL)
+            {
+                cout << "No encontrado ";
                 break;
             }
         }
