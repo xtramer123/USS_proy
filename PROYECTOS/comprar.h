@@ -8,6 +8,7 @@
 //
 using namespace std;
 void comBeb();
+void comAlco();
 nodoClient *seleccionado = NULL;
 void elegirCl()
 {
@@ -76,17 +77,21 @@ void comBeb()
                 cout << "Ingresa cantidad: ";
                 cin >> cant;
                 stock = actual->bebidas.stock;
-                if (stock <= 0)
+                if (stock - cant < 0)
                 {
-                    cout << "Sin stock";
-                    break;
+                    cout << "Error en la compra";
+                    return;
                 }
                 else
                 {
                     comprado = actual;
                     precio = comprado->bebidas.precio;
-                    comprado->bebidas.stock = comprado->bebidas.stock - cant;
-                    seleccionado->person.deuda = precio * cant;
+                    comprado->bebidas.stock -= cant; // acortado
+                    seleccionado->person.deuda += (precio * cant);
+                    short pos = seleccionado->person.cantidad.bebCom;
+                    seleccionado->person.cantidad.bebCom++;
+                    seleccionado->person.boletaNom.noAlc[pos] = comprado->bebidas.nombre;
+                    seleccionado->person.boletaPre.noAlc[pos] = comprado->bebidas.precio;
                 }
                 break;
             }
@@ -97,6 +102,59 @@ void comBeb()
             if (actual == NULL)
             {
                 cout << "No encontrado " << endl;
+                break;
+            }
+        }
+    }
+}
+
+void comAlco()
+{
+    nodoAl *comprado = NULL;
+    nodoAl *actual = primeroAh;
+    string codigo;
+    short cant, stock, precio;
+    mostALCO();
+    if (actual != NULL)
+    {
+        cout << "Ingresa codigo de bebida a comprar: ";
+        cin >> codigo;
+        while (actual != NULL)
+        {
+            if (actual->alcolicas.codigo == codigo)
+            {
+                cout << "Bebida comprada " << endl;
+                cout << "Nombre: " << actual->alcolicas.nombre << endl;
+                cout << "Precio: $" << actual->alcolicas.precio << endl;
+                cout << "litros: " << actual->alcolicas.litros << "L" << endl;
+                cout << "Stock: " << actual->alcolicas.stock << endl;
+                stock = actual->alcolicas.stock;
+                cout << "Ingresa cantidad a comprar: ";
+                cin >> cant;
+                if (stock - cant < 0)
+                {
+                    cout << "Error en la compra" << endl;
+                    return;
+                }
+                else
+                {
+                    comprado = actual;
+                    precio = comprado->alcolicas.precio;
+                    seleccionado->person.deuda += (precio * cant);
+                    comprado->alcolicas.stock -= cant;
+                    short pos = seleccionado->person.cantidad.alcoComp;
+                    seleccionado->person.cantidad.alcoComp++;
+                    seleccionado->person.boletaNom.acoli[pos] = comprado->alcolicas.nombre;
+                    seleccionado->person.boletaPre.acoli[pos] = comprado->alcolicas.precio;
+                }
+            }
+            else
+            {
+                actual = actual->sig;
+            }
+            if (actual == NULL)
+            {
+                cout << "No encontrado ";
                 break;
             }
         }

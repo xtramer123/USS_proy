@@ -11,32 +11,38 @@ void mostClients();
 void editClient();
 void elegirCl();
 
-#define MAX 10;
+const short MAX = 5;
 
 struct boletaN
 {
-    string acoli;
-    string noAlc;
-    string sal;
-    string dul;
-    string hog;
-    string ali;
+    string acoli[MAX];
+    string noAlc[MAX];
+    string sal[MAX];
+    string dul[MAX];
+    string hog[MAX];
+    string ali[MAX];
 };
 
 struct boletaP
 {
-    float acoli;
-    float noAlc;
-    float sal;
-    float dul;
-    float hog;
-    float ali;
+    float acoli[MAX];
+    float noAlc[MAX];
+    float sal[MAX];
+    float dul[MAX];
+    float hog[MAX];
+    float ali[MAX];
+};
+
+struct cantidades
+{
+    short bebCom = 0, alcoComp = 0, snDul = 0, snSal = 0, pHog = 0, pAli = 0;
 };
 
 struct datos
 {
     boletaN boletaNom;
     boletaP boletaPre;
+    cantidades cantidad;
     string nombre;
     string apellido;
     short edad;
