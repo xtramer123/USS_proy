@@ -72,7 +72,7 @@ void menuCOM()
             comBeb();
             break;
         case 2:
-            mostALCO();
+            comAlco();
             break;
         case 3:
             mostDUL();
