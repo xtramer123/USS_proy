@@ -6,6 +6,7 @@
 #include <fstream>
 #include "comprar.h"
 
+//
 using namespace std;
 // edicion
 void MenuEdit()
