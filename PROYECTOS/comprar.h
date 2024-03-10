@@ -9,6 +9,10 @@
 using namespace std;
 void comBeb();
 void comAlco();
+void comDul();
+void comSal();
+void comAli();
+void comHo();
 nodoClient *seleccionado = NULL;
 void elegirCl()
 {
@@ -92,6 +96,7 @@ void comBeb()
                     seleccionado->person.cantidad.bebCom++;
                     seleccionado->person.boletaNom.noAlc[pos] = comprado->bebidas.nombre;
                     seleccionado->person.boletaPre.noAlc[pos] = comprado->bebidas.precio;
+                    seleccionado->person.boletaCanti.noAlc[pos] = cant;
                 }
                 break;
             }
@@ -146,7 +151,228 @@ void comAlco()
                     seleccionado->person.cantidad.alcoComp++;
                     seleccionado->person.boletaNom.acoli[pos] = comprado->alcolicas.nombre;
                     seleccionado->person.boletaPre.acoli[pos] = comprado->alcolicas.precio;
+                    seleccionado->person.boletaCanti.acoli[pos] = cant;
                 }
+                break;
+            }
+            else
+            {
+                actual = actual->sig;
+            }
+            if (actual == NULL)
+            {
+                cout << "No encontrado ";
+                break;
+            }
+        }
+    }
+}
+
+void comDul()
+{
+    nodoDUL *comprado = NULL;
+    nodoDUL *actual = primeroD;
+    string codigo;
+    short cant, stock, precio;
+    mostDUL();
+    if (actual != NULL)
+    {
+        cout << "Ingresa codigo del snack a comprar: ";
+        cin >> codigo;
+        while (actual != NULL)
+        {
+            if (actual->snDul.codigo == codigo)
+            {
+                cout << "Snack comprado " << endl;
+                cout << "Nombre: " << actual->snDul.nombre << endl;
+                cout << "Precio: $" << actual->snDul.precio << endl;
+                cout << "Peso: " << actual->snDul.kilos << "Kg" << endl;
+                cout << "Stock: " << actual->snDul.stock << endl;
+                stock = actual->snDul.stock;
+                cout << "Ingresa cantidad a comprar: ";
+                cin >> cant;
+                if (stock - cant < 0)
+                {
+                    cout << "Error en la compra" << endl;
+                    return;
+                }
+                else
+                {
+                    comprado = actual;
+                    precio = comprado->snDul.precio;
+                    seleccionado->person.deuda += (precio * cant);
+                    comprado->snDul.stock -= cant;
+                    short pos = seleccionado->person.cantidad.snDul;
+                    seleccionado->person.cantidad.snDul++;
+                    seleccionado->person.boletaNom.dul[pos] = comprado->snDul.nombre;
+                    seleccionado->person.boletaPre.dul[pos] = comprado->snDul.precio;
+                    seleccionado->person.boletaCanti.dul[pos] = cant;
+                }
+                break;
+            }
+            else
+            {
+                actual = actual->sig;
+            }
+            if (actual == NULL)
+            {
+                cout << "No encontrado ";
+                break;
+            }
+        }
+    }
+}
+
+void comSal()
+{
+    nodoSAL *comprado = NULL;
+    nodoSAL *actual = primeroSA;
+    string codigo;
+    short cant, stock, precio;
+    mostSAL();
+    if (actual != NULL)
+    {
+        cout << "Ingresa codigo del snack a comprar: ";
+        cin >> codigo;
+        while (actual != NULL)
+        {
+            if (actual->snSAL.codigo == codigo)
+            {
+                cout << "Snack comprado " << endl;
+                cout << "Nombre: " << actual->snSAL.nombre << endl;
+                cout << "Precio: $" << actual->snSAL.precio << endl;
+                cout << "Peso: " << actual->snSAL.kilos << "Kg" << endl;
+                cout << "Stock: " << actual->snSAL.stock << endl;
+                stock = actual->snSAL.stock;
+                cout << "Ingresa cantidad a comprar: ";
+                cin >> cant;
+                if (stock - cant < 0)
+                {
+                    cout << "Error en la compra" << endl;
+                    return;
+                }
+                else
+                {
+                    comprado = actual;
+                    precio = comprado->snSAL.precio;
+                    seleccionado->person.deuda += (precio * cant);
+                    comprado->snSAL.stock -= cant;
+                    short pos = seleccionado->person.cantidad.snSal;
+                    seleccionado->person.cantidad.snSal++;
+                    seleccionado->person.boletaNom.sal[pos] = comprado->snSAL.nombre;
+                    seleccionado->person.boletaPre.sal[pos] = comprado->snSAL.precio;
+                    seleccionado->person.boletaCanti.sal[pos] = cant;
+                }
+                break;
+            }
+            else
+            {
+                actual = actual->sig;
+            }
+            if (actual == NULL)
+            {
+                cout << "No encontrado ";
+                break;
+            }
+        }
+    }
+}
+
+void comAli()
+{
+    nodoAlimentos *comprado = NULL;
+    nodoAlimentos *actual = primeroAi;
+    string codigo;
+    short cant, stock, precio;
+    most_alim();
+    if (actual != NULL)
+    {
+        cout << "Ingresa codigo del alimento a comprar: ";
+        cin >> codigo;
+        while (actual != NULL)
+        {
+            if (actual->pr_al.codigo == codigo)
+            {
+                cout << "Snack comprado " << endl;
+                cout << "Nombre: " << actual->pr_al.nombre << endl;
+                cout << "Precio: $" << actual->pr_al.precio << endl;
+                cout << "Peso: " << actual->pr_al.kilos << "Kg" << endl;
+                cout << "Stock: " << actual->pr_al.stock << endl;
+                stock = actual->pr_al.stock;
+                cout << "Ingresa cantidad a comprar: ";
+                cin >> cant;
+                if (stock - cant < 0)
+                {
+                    cout << "Error en la compra" << endl;
+                    return;
+                }
+                else
+                {
+                    comprado = actual;
+                    precio = comprado->pr_al.precio;
+                    seleccionado->person.deuda += (precio * cant);
+                    comprado->pr_al.stock -= cant;
+                    short pos = seleccionado->person.cantidad.pAli;
+                    seleccionado->person.cantidad.pAli++;
+                    seleccionado->person.boletaNom.ali[pos] = comprado->pr_al.nombre;
+                    seleccionado->person.boletaPre.ali[pos] = comprado->pr_al.precio;
+                    seleccionado->person.boletaCanti.ali[pos] = cant;
+                }
+                break;
+            }
+            else
+            {
+                actual = actual->sig;
+            }
+            if (actual == NULL)
+            {
+                cout << "No encontrado ";
+                break;
+            }
+        }
+    }
+}
+
+void comHo()
+{
+    nodoHogar *comprado = NULL;
+    nodoHogar *actual = primeroHo;
+    string codigo;
+    short cant, stock, precio;
+    most_alim();
+    if (actual != NULL)
+    {
+        cout << "Ingresa codigo del alimento a comprar: ";
+        cin >> codigo;
+        while (actual != NULL)
+        {
+            if (actual->pr_hogar.codigo == codigo)
+            {
+                cout << "Snack comprado " << endl;
+                cout << "Nombre: " << actual->pr_hogar.nombre << endl;
+                cout << "Precio: $" << actual->pr_hogar.precio << endl;
+                cout << "Stock: " << actual->pr_hogar.stock << endl;
+                stock = actual->pr_hogar.stock;
+                cout << "Ingresa cantidad a comprar: ";
+                cin >> cant;
+                if (stock - cant < 0)
+                {
+                    cout << "Error en la compra" << endl;
+                    return;
+                }
+                else
+                {
+                    comprado = actual;
+                    precio = comprado->pr_hogar.precio;
+                    seleccionado->person.deuda += (precio * cant);
+                    comprado->pr_hogar.stock -= cant;
+                    short pos = seleccionado->person.cantidad.pHog;
+                    seleccionado->person.cantidad.pHog++;
+                    seleccionado->person.boletaNom.hog[pos] = comprado->pr_hogar.nombre;
+                    seleccionado->person.boletaPre.hog[pos] = comprado->pr_hogar.precio;
+                    seleccionado->person.boletaCanti.hog[pos] = cant;
+                }
+                break;
             }
             else
             {

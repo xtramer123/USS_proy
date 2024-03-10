@@ -75,7 +75,7 @@ void menuCOM()
             comAlco();
             break;
         case 3:
-            mostDUL();
+            comDul();
             break;
         case 4:
             mostSAL();

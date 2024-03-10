@@ -11,7 +11,7 @@ void mostClients();
 void editClient();
 void elegirCl();
 
-const short MAX = 5;
+const short MAX = 10;
 
 struct boletaN
 {
@@ -33,6 +33,16 @@ struct boletaP
     float ali[MAX];
 };
 
+struct boleCant
+{
+    unsigned short acoli[MAX];
+    unsigned short noAlc[MAX];
+    unsigned short sal[MAX];
+    unsigned short dul[MAX];
+    unsigned short hog[MAX];
+    unsigned short ali[MAX];
+};
+
 struct cantidades
 {
     short bebCom = 0, alcoComp = 0, snDul = 0, snSal = 0, pHog = 0, pAli = 0;
@@ -42,6 +52,7 @@ struct datos
 {
     boletaN boletaNom;
     boletaP boletaPre;
+    boleCant boletaCanti;
     cantidades cantidad;
     string nombre;
     string apellido;
