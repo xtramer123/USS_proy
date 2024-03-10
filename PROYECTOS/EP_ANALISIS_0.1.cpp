@@ -78,13 +78,13 @@ void menuCOM()
             comDul();
             break;
         case 4:
-            mostSAL();
+            comSal();
             break;
         case 5:
-            most_alim();
+            comAli();
             break;
         case 6:
-            most_hog();
+            comHo();
             break;
         default:
             band = false;

@@ -339,7 +339,7 @@ void comHo()
     nodoHogar *actual = primeroHo;
     string codigo;
     short cant, stock, precio;
-    most_alim();
+    most_hog();
     if (actual != NULL)
     {
         cout << "Ingresa codigo del alimento a comprar: ";
